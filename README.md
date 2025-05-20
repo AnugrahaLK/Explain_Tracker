@@ -4,4 +4,4 @@
  
 ![Add expence](https://github.com/user-attachments/assets/3d95f7e8-0dfc-4f0d-84b7-ea293ae4c4d8)
 
-![Wallet](https://github.com/user-attachments/assets/109f4504-fab8-4c03-a427-181859d6b6a9)
+
