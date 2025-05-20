@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transaction Details</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      padding: 2rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      display: inline-block;
+      width: 95%;
+      max-width: 1000px;
+    }
+
+    button {
+      background-color: #00c9a7;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      margin: 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00a387;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      color: #e0e0e0;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: left;
+    }
+
+    th {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    td {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📊 Transaction Details</h2>
+    <button onclick="loadTransactions()">🔄 Load Transactions</button>
+
+    <table id="txTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tx Hash</th>
+          <th>Date/Time</th>
+          <th>Currency</th>
+          <th>Amount (ETH)</th>
+          <th>Gas Used</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>0x1234567890abcdef1234567890abcdef12345678</td><td>May 11, 2025, 10:00 AM</td><td>ETH</td><td>100</td><td>21000</td></tr>
+        <tr><td>2</td><td>0xabcdef1234567890abcdef1234567890abcdef12</td><td>May 12, 2025, 2:30 PM</td><td>ETH</td><td>200</td><td>30000</td></tr>
+        <tr><td>3</td><td>0x7890abcdef1234567890abcdef1234567890ab</td><td>May 13, 2025, 5:45 PM</td><td>ETH</td><td>150</td><td>25000</td></tr>
+        <tr><td>4</td><td>0x4567890abcdef1234567890abcdef1234567890</td><td>May 11, 2025, 11:00 AM</td><td>ETH</td><td>50</td><td>21000</td></tr>
+        <tr><td>5</td><td>0xabcdefabcdef1234567890abcdef1234567890ab</td><td>May 12, 2025, 3:00 PM</td><td>ETH</td><td>300</td><td>30000</td></tr>
+        <tr><td>6</td><td>0x1234567890abcdefabcdef1234567890abcdef12</td><td>May 13, 2025, 6:00 PM</td><td>ETH</td><td>200</td><td>25000</td></tr>
+        <tr><td>7</td><td>0xabcdef1234567890abcdefabcdef1234567890ab</td><td>May 11, 2025, 12:00 PM</td><td>ETH</td><td>100</td><td>21000</td></tr>
+        <tr><td>8</td><td>0x7890abcdef1234567890abcdefabcdef12345678</td><td>May 12, 2025, 4:00 PM</td><td>ETH</td><td>50</td><td>30000</td></tr>
+        <tr><td>9</td><td>0x4567890abcdef1234567890abcdefabcdef12345</td><td>May 13, 2025, 7:00 PM</td><td>ETH</td><td>50</td><td>25000</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 40px;">🧾 Added Expenses (From Tracker)</h3>
+    <table id="expenseTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Amount (ETH)</th>
+          <th>Description</th>
+          <th>Date/Time</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    async function loadTransactions() {
+      alert("🔄 fetching data from 0xA9d26793A7752d10F06Dc78Fe869b8E0c3B7F835");
+    }
+
+    window.onload = function () {
+      const expenses = JSON.parse(localStorage.getItem("savedExpenses") || "[]");
+      const tbody = document.querySelector("#expenseTable tbody");
+
+      if (expenses.length === 0) {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td colspan="4">📭 No expenses added from tracker.</td>`;
+        tbody.appendChild(row);
+      } else {
+        expenses.forEach((exp, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${exp.amount}</td>
+            <td>${exp.description}</td>
+            <td>${exp.timestamp}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
